@@ -167,7 +167,7 @@ const translations = {
     "I don't understand what you just said."
 };
 
-app.command("/corporate-translator-ping", async ({ ack, respond }) => {
+app.command("/corporate-translator-ping", async ({ command, ack, respond }) => {
   const start = Date.now();
 
   await ack();
@@ -175,9 +175,7 @@ app.command("/corporate-translator-ping", async ({ ack, respond }) => {
   const latency = Date.now() - start;
 
   await respond({
-    response_type: "ephemeral",
-    text: `🏓 Pong!\n\n⚡ Response latency: ${latency}ms`
-  });
+    text: ` Pong!\n\n Response latency: ${latency}ms`});
 });
 
 app.command("/corporate-translator", async ({ command, ack, respond }) => {
@@ -185,12 +183,10 @@ app.command("/corporate-translator", async ({ command, ack, respond }) => {
 
   const input = command.text.trim();
 
-  // Nothing entered
+
   if (!input) {
-    await respond({
-      response_type: "ephemeral",
-      text:
-        "🤨 You forgot the corporate bullshit.\n\n" +
+    await respond({text:
+        " You forgot the corporate bullshit.\n\n" +
         "Try:\n" +
         '`/corporate-translator "Let\'s circle back on this"`\n\n' +
         "Need examples? Try `/corporate-translator-help`."
@@ -199,13 +195,13 @@ app.command("/corporate-translator", async ({ command, ack, respond }) => {
     return;
   }
 
-  // Normalize the input
+
   const normalizedInput = input
     .toLowerCase()
     .replace(/[.!?,]/g, "")
     .trim();
 
-  // Look for translation
+
   const translation = translations[normalizedInput];
 
   if (translation) {
@@ -237,17 +233,17 @@ app.command("/corporate-translator", async ({ command, ack, respond }) => {
   await respond({
     response_type: "ephemeral",
     text:
-      `🤔 I don't know how to translate "${input}" yet.\n\n` +
+      ` I don't know how to translate "${input}" yet.\n\n` +
       "Try `/corporate-translator-help` to see supported phrases."
   });
 });
 
 
-app.command("/corporate-translator-help", async ({ ack, respond }) => {
+app.command("/corporate-translator-help", async ({ command, ack, respond }) => {
   await ack();
 
   await respond({
-    response_type: "ephemeral",
+    
 
     blocks: [
       {
