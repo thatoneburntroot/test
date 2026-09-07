@@ -18,6 +18,11 @@ Features
 - Makes meetings 73% less unbearable*
 - Built with Node.js + Slack Bolt
 
+How to use:
+- /corporate-translator-ping (pings the bot and shows latency)
+- /corporate-translator-help(shows a list of available phrases to translate)
+- /corporate-translator (enter the phrase you would like to translate)
+
 *Statistics completely made up by me.
 
 
